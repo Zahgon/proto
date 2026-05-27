@@ -27,98 +27,36 @@ package proto
 type Handler func(v Visitee)
 
 // Walk recursively pays a visit to all Visitees of a Proto and calls each handler with it.
-func Walk(proto *Proto, handlers ...Handler) {
-	walk(proto, handlers...)
-}
+func Walk(proto *Proto, handlers ...Handler) { _ = "STUB: not implemented"; return }
 
-func walk(container elementContainer, handlers ...Handler) {
-	for _, eachElement := range container.elements() {
-		for _, eachFilter := range handlers {
-			eachFilter(eachElement)
-		}
-		if next, ok := eachElement.(elementContainer); ok {
-			walk(next, handlers...)
-		}
-	}
-}
+func walk(container elementContainer, handlers ...Handler) { _ = "STUB: not implemented"; return }
 
 // WithImport returns a Handler that will call the apply function when the Visitee is an Import.
-func WithImport(apply func(*Import)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Import); ok {
-			apply(s)
-		}
-	}
-}
+func WithImport(apply func(*Import)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithMessage returns a Handler that will call the apply function when the Visitee is a Message.
-func WithMessage(apply func(*Message)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Message); ok {
-			apply(s)
-		}
-	}
-}
+func WithMessage(apply func(*Message)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithOption returns a Handler that will call the apply function when the Visitee is a Option.
-func WithOption(apply func(*Option)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Option); ok {
-			apply(s)
-		}
-	}
-}
+func WithOption(apply func(*Option)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithEnum returns a Handler that will call the apply function when the Visitee is a Enum.
-func WithEnum(apply func(*Enum)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Enum); ok {
-			apply(s)
-		}
-	}
-}
+func WithEnum(apply func(*Enum)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithOneof returns a Handler that will call the apply function when the Visitee is a Oneof.
-func WithOneof(apply func(*Oneof)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Oneof); ok {
-			apply(s)
-		}
-	}
-}
+func WithOneof(apply func(*Oneof)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithService returns a Handler that will call the apply function when the Visitee is a Service.
-func WithService(apply func(*Service)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Service); ok {
-			apply(s)
-		}
-	}
-}
+func WithService(apply func(*Service)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithRPC returns a Handler that will call the apply function when the Visitee is a RPC.
-func WithRPC(apply func(*RPC)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*RPC); ok {
-			apply(s)
-		}
-	}
-}
+func WithRPC(apply func(*RPC)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithPackage returns a Handler that will call the apply function when the Visitee is a Package.
-func WithPackage(apply func(*Package)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*Package); ok {
-			apply(s)
-		}
-	}
-}
+func WithPackage(apply func(*Package)) Handler { _ = "STUB: not implemented"; return *new(Handler) }
 
 // WithNormalField returns a Handler that will call the apply function when the Visitee is a NormalField.
 func WithNormalField(apply func(*NormalField)) Handler {
-	return func(v Visitee) {
-		if s, ok := v.(*NormalField); ok {
-			apply(s)
-		}
-	}
+	_ = "STUB: not implemented"
+	return *new(Handler)
 }

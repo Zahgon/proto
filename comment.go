@@ -24,7 +24,6 @@
 package proto
 
 import (
-	"strings"
 	"text/scanner"
 )
 
@@ -38,18 +37,7 @@ type Comment struct {
 }
 
 // newComment returns a comment.
-func newComment(pos scanner.Position, lit string) *Comment {
-	extraSlash := strings.HasPrefix(lit, "///")
-	isCstyle := strings.HasPrefix(lit, "/*") && strings.HasSuffix(lit, "*/")
-	var lines []string
-	if isCstyle {
-		withoutMarkers := strings.TrimRight(strings.TrimLeft(lit, "/*"), "*/")
-		lines = strings.Split(withoutMarkers, "\n")
-	} else {
-		lines = strings.Split(strings.TrimLeft(lit, "/"), "\n")
-	}
-	return &Comment{Position: pos, Lines: lines, Cstyle: isCstyle, ExtraSlash: extraSlash}
-}
+func newComment(pos scanner.Position, lit string) *Comment { _ = "STUB: not implemented"; return nil }
 
 type inlineComment struct {
 	line       string
@@ -58,29 +46,18 @@ type inlineComment struct {
 
 // Accept dispatches the call to the visitor.
 func (c *Comment) Accept(v Visitor) {
-	v.VisitComment(c)
+	_ = "STUB: not implemented"
+
+	// Merge appends all lines from the argument comment.
+	return
 }
 
-// Merge appends all lines from the argument comment.
-func (c *Comment) Merge(other *Comment) {
-	c.Lines = append(c.Lines, other.Lines...)
-	c.Cstyle = c.Cstyle || other.Cstyle
-}
+func (c *Comment) Merge(other *Comment) { _ = "STUB: not implemented"; return }
 
-func (c Comment) hasTextOnLine(line int) bool {
-	if len(c.Lines) == 0 {
-		return false
-	}
-	return c.Position.Line <= line && line <= c.Position.Line+len(c.Lines)-1
-}
+func (c Comment) hasTextOnLine(line int) bool { _ = "STUB: not implemented"; return false }
 
 // Message returns the first line or empty if no lines.
-func (c Comment) Message() string {
-	if len(c.Lines) == 0 {
-		return ""
-	}
-	return c.Lines[0]
-}
+func (c Comment) Message() string { _ = "STUB: not implemented"; return "" }
 
 // commentInliner is for types that can have an inline comment.
 type commentInliner interface {
@@ -88,72 +65,45 @@ type commentInliner interface {
 }
 
 // maybeScanInlineComment tries to scan comment on the current line ; if present then set it for the last element added.
-func maybeScanInlineComment(p *Parser, c elementContainer) {
-	currentPos := p.scanner.Position
-	// see if there is an inline Comment
-	pos, tok, lit := p.next()
-	esize := len(c.elements())
-	// seen comment and on same line and elements have been added
-	if tCOMMENT == tok && pos.Line == currentPos.Line && esize > 0 {
-		// if the last added element can have an inline comment then set it
-		last := c.elements()[esize-1]
-		if inliner, ok := last.(commentInliner); ok {
-			// TODO skip multiline?
-			inliner.inlineComment(newComment(pos, lit))
-		}
-	} else {
-		p.nextPut(pos, tok, lit)
-	}
-}
+func maybeScanInlineComment(p *Parser, c elementContainer) { _ = "STUB: not implemented"; return }
+
+// see if there is an inline Comment
+
+// seen comment and on same line and elements have been added
+
+// if the last added element can have an inline comment then set it
+
+// TODO skip multiline?
 
 // takeLastCommentIfEndsOnLine removes and returns the last element of the list if it is a Comment
 func takeLastCommentIfEndsOnLine(list []Visitee, line int) (*Comment, []Visitee) {
-	if len(list) == 0 {
-		return nil, list
-	}
-	if last, ok := list[len(list)-1].(*Comment); ok && last.hasTextOnLine(line) {
-		return last, list[:len(list)-1]
-	}
-	return nil, list
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // mergeOrReturnComment creates a new comment and tries to merge it with the last element (if is a comment and is on the next line).
 func mergeOrReturnComment(elements []Visitee, lit string, pos scanner.Position) *Comment {
-	com := newComment(pos, lit)
-	esize := len(elements)
-	if esize == 0 {
-		return com
-	}
-	// last element must be a comment to merge
-	last, ok := elements[esize-1].(*Comment)
-	if !ok {
-		return com
-	}
-	// do not merge c-style comments
-	if last.Cstyle {
-		return com
-	}
-	// last comment has text on previous line
-	// TODO handle last line of file could be inline comment
-	if !last.hasTextOnLine(pos.Line - 1) {
-		return com
-	}
-	last.Merge(com)
+	_ = "STUB: not implemented"
 	return nil
 }
 
-// parent is part of elementContainer
-func (c *Comment) parent(Visitee) {}
+// last element must be a comment to merge
 
-// consumeCommentFor is for reading and taking all comment lines before the body of an element (starting at {)
-func consumeCommentFor(p *Parser, e elementContainer) {
-	pos, tok, lit := p.next()
-	if tok == tCOMMENT {
-		if com := mergeOrReturnComment(e.elements(), lit, pos); com != nil { // not merged?
-			e.addElement(com)
-		}
-		consumeCommentFor(p, e) // bit of recursion is fine
-	} else {
-		p.nextPut(pos, tok, lit)
-	}
+// do not merge c-style comments
+
+// last comment has text on previous line
+// TODO handle last line of file could be inline comment
+
+// parent is part of elementContainer
+func (c *Comment) parent(Visitee) {
+	_ = "STUB: not implemented"
+
+	// consumeCommentFor is for reading and taking all comment lines before the body of an element (starting at {)
+	return
 }
+
+func consumeCommentFor(p *Parser, e elementContainer) { _ = "STUB: not implemented"; return }
+
+// not merged?
+
+// bit of recursion is fine

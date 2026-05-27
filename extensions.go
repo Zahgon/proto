@@ -39,51 +39,17 @@ type Extensions struct {
 }
 
 // inlineComment is part of commentInliner.
-func (e *Extensions) inlineComment(c *Comment) {
-	e.InlineComment = c
-}
+func (e *Extensions) inlineComment(c *Comment) { _ = "STUB: not implemented"; return }
 
 // Accept dispatches the call to the visitor.
-func (e *Extensions) Accept(v Visitor) {
-	v.VisitExtensions(e)
-}
+func (e *Extensions) Accept(v Visitor) { _ = "STUB: not implemented"; return }
 
 // parse expects ranges
-func (e *Extensions) parse(p *Parser) error {
-	list, err := parseRanges(p, e)
-	if err != nil {
-		return err
-	}
-	e.Ranges = list
+func (e *Extensions) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
 
-	// see if there are options
-	pos, tok, lit := p.next()
-	if tLEFTSQUARE != tok {
-		p.nextPut(pos, tok, lit)
-		return nil
-	}
-	// consume options (copied from normal field parsing)
-	for {
-		o := new(Option)
-		o.Position = pos
-		o.IsEmbedded = true
-		o.parent(e)
-		err := o.parse(p)
-		if err != nil {
-			return err
-		}
-		e.Options = append(e.Options, o)
+// see if there are options
 
-		pos, tok, lit = p.next()
-		if tRIGHTSQUARE == tok {
-			break
-		}
-		if tCOMMA != tok {
-			return p.unexpected(lit, "option ,", o)
-		}
-	}
-	return nil
-}
+// consume options (copied from normal field parsing)
 
 // parent is part of elementContainer
-func (e *Extensions) parent(p Visitee) { e.Parent = p }
+func (e *Extensions) parent(p Visitee) { _ = "STUB: not implemented"; return }

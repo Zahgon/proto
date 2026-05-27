@@ -35,31 +35,23 @@ type Edition struct {
 	Parent        Visitee
 }
 
-func (e *Edition) parse(p *Parser) error {
-	if _, tok, lit := p.next(); tok != tEQUALS {
-		return p.unexpected(lit, "edition =", e)
-	}
-	_, _, lit := p.next()
-	if !isString(lit) {
-		return p.unexpected(lit, "edition string constant", e)
-	}
-	e.Value, _ = unQuote(lit)
-	return nil
-}
+func (e *Edition) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
 
 // Accept dispatches the call to the visitor.
 func (e *Edition) Accept(v Visitor) {
+	_ = "STUB: not implemented"
 	// v.VisitEdition(e) in v2
+	return
 }
 
 // Doc is part of Documented
 func (e *Edition) Doc() *Comment {
-	return e.Comment
+	_ = "STUB: not implemented"
+
+	// inlineComment is part of commentInliner.
+	return nil
 }
 
-// inlineComment is part of commentInliner.
-func (e *Edition) inlineComment(c *Comment) {
-	e.InlineComment = c
-}
+func (e *Edition) inlineComment(c *Comment) { _ = "STUB: not implemented"; return }
 
-func (e *Edition) parent(v Visitee) { e.Parent = v }
+func (e *Edition) parent(v Visitee) { _ = "STUB: not implemented"; return }

@@ -37,110 +37,58 @@ type Oneof struct {
 }
 
 // addElement is part of elementContainer
-func (o *Oneof) addElement(v Visitee) {
-	v.parent(o)
-	o.Elements = append(o.Elements, v)
-}
+func (o *Oneof) addElement(v Visitee) { _ = "STUB: not implemented"; return }
 
 // elements is part of elementContainer
 func (o *Oneof) elements() []Visitee {
-	return o.Elements
+	_ = "STUB: not implemented"
+
+	// takeLastComment is part of elementContainer
+	// removes and returns the last element of the list if it is a Comment.
+	return nil
 }
 
-// takeLastComment is part of elementContainer
-// removes and returns the last element of the list if it is a Comment.
 func (o *Oneof) takeLastComment(expectedOnLine int) (last *Comment) {
-	last, o.Elements = takeLastCommentIfEndsOnLine(o.Elements, expectedOnLine)
-	return last
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // parse expects:
 // oneofName "{" { oneofField | emptyStatement } "}"
-func (o *Oneof) parse(p *Parser) error {
-	pos, tok, lit := p.next()
-	if tok != tIDENT {
-		if !isKeyword(tok) {
-			return p.unexpected(lit, "oneof identifier", o)
-		}
-	}
-	o.Name = lit
-	consumeCommentFor(p, o)
-	pos, tok, lit = p.next()
-	if tok != tLEFTCURLY {
-		return p.unexpected(lit, "oneof opening {", o)
-	}
-	for {
-		pos, tok, lit = p.nextTypeName()
-		switch tok {
-		case tCOMMENT:
-			if com := mergeOrReturnComment(o.elements(), lit, pos); com != nil { // not merged?
-				o.addElement(com)
-			}
-		case tIDENT:
-			f := newOneOfField()
-			f.Position = pos
-			f.Comment, o.Elements = takeLastCommentIfEndsOnLine(o.elements(), pos.Line-1) // TODO call takeLastComment instead?
-			f.Type = lit
-			if err := parseFieldAfterType(f.Field, p, f); err != nil {
-				return err
-			}
-			o.addElement(f)
-		case tGROUP:
-			g := new(Group)
-			g.Position = pos
-			g.Comment, o.Elements = takeLastCommentIfEndsOnLine(o.elements(), pos.Line-1)
-			if err := g.parse(p); err != nil {
-				return err
-			}
-			o.addElement(g)
-		case tOPTION:
-			opt := new(Option)
-			opt.Position = pos
-			opt.Comment, o.Elements = takeLastCommentIfEndsOnLine(o.elements(), pos.Line-1)
-			if err := opt.parse(p); err != nil {
-				return err
-			}
-			o.addElement(opt)
-		case tSEMICOLON:
-			maybeScanInlineComment(p, o)
-			// continue
-		default:
-			goto done
-		}
-	}
-done:
-	if tok != tRIGHTCURLY {
-		return p.unexpected(lit, "oneof closing }", o)
-	}
-	return nil
-}
+func (o *Oneof) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
+
+// not merged?
+
+// TODO call takeLastComment instead?
+
+// continue
 
 // Accept dispatches the call to the visitor.
 func (o *Oneof) Accept(v Visitor) {
-	v.VisitOneof(o)
+	_ = "STUB: not implemented"
+
+	// Doc is part of Documented
+	return
 }
 
-// Doc is part of Documented
 func (o *Oneof) Doc() *Comment {
-	return o.Comment
+	_ = "STUB: not implemented"
+
+	// OneOfField is part of Oneof.
+	return nil
 }
 
-// OneOfField is part of Oneof.
 type OneOfField struct {
 	*Field
 }
 
-func newOneOfField() *OneOfField { return &OneOfField{Field: new(Field)} }
+func newOneOfField() *OneOfField { _ = "STUB: not implemented"; return nil }
 
 // Accept dispatches the call to the visitor.
-func (o *OneOfField) Accept(v Visitor) {
-	v.VisitOneofField(o)
-}
+func (o *OneOfField) Accept(v Visitor) { _ = "STUB: not implemented"; return }
 
 // Doc is part of Documented
 // Note: although Doc() is defined on Field, it must be implemented here as well.
-func (o *OneOfField) Doc() *Comment {
-	return o.Comment
-}
+func (o *OneOfField) Doc() *Comment { _ = "STUB: not implemented"; return nil }
 
-func (o *Oneof) parent(v Visitee) { o.Parent = v }
+func (o *Oneof) parent(v Visitee) { _ = "STUB: not implemented"; return }

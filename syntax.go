@@ -36,31 +36,23 @@ type Syntax struct {
 	Parent        Visitee
 }
 
-func (s *Syntax) parse(p *Parser) error {
-	if _, tok, lit := p.next(); tok != tEQUALS {
-		return p.unexpected(lit, "syntax =", s)
-	}
-	_, _, lit := p.next()
-	if !isString(lit) {
-		return p.unexpected(lit, "syntax string constant", s)
-	}
-	s.Value, _ = unQuote(lit)
-	return nil
-}
+func (s *Syntax) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
 
 // Accept dispatches the call to the visitor.
 func (s *Syntax) Accept(v Visitor) {
-	v.VisitSyntax(s)
+	_ = "STUB: not implemented"
+
+	// Doc is part of Documented
+	return
 }
 
-// Doc is part of Documented
 func (s *Syntax) Doc() *Comment {
-	return s.Comment
+	_ = "STUB: not implemented"
+
+	// inlineComment is part of commentInliner.
+	return nil
 }
 
-// inlineComment is part of commentInliner.
-func (s *Syntax) inlineComment(c *Comment) {
-	s.InlineComment = c
-}
+func (s *Syntax) inlineComment(c *Comment) { _ = "STUB: not implemented"; return }
 
-func (s *Syntax) parent(v Visitee) { s.Parent = v }
+func (s *Syntax) parent(v Visitee) { _ = "STUB: not implemented"; return }

@@ -30,55 +30,123 @@ var _ Visitor = NoopVisitor{}
 type NoopVisitor struct{}
 
 // VisitMessage is part of Visitor interface
-func (n NoopVisitor) VisitMessage(m *Message) {}
+func (n NoopVisitor) VisitMessage(m *Message) {
+	_ = "STUB: not implemented"
 
-// VisitService is part of Visitor interface
-func (n NoopVisitor) VisitService(v *Service) {}
+	// VisitService is part of Visitor interface
+	return
+}
 
-// VisitSyntax is part of Visitor interface
-func (n NoopVisitor) VisitSyntax(s *Syntax) {}
+func (n NoopVisitor) VisitService(v *Service) {
+	_ = "STUB: not implemented"
 
-// VisitSyntax is part of Visitor interface
-func (n NoopVisitor) VisitEdition(e *Edition) {}
+	// VisitSyntax is part of Visitor interface
+	return
+}
 
-// VisitPackage is part of Visitor interface
-func (n NoopVisitor) VisitPackage(p *Package) {}
+func (n NoopVisitor) VisitSyntax(s *Syntax) {
+	_ = "STUB: not implemented"
 
-// VisitOption is part of Visitor interface
-func (n NoopVisitor) VisitOption(o *Option) {}
+	// VisitSyntax is part of Visitor interface
+	return
+}
 
-// VisitImport is part of Visitor interface
-func (n NoopVisitor) VisitImport(i *Import) {}
+func (n NoopVisitor) VisitEdition(e *Edition) {
+	_ = "STUB: not implemented"
 
-// VisitNormalField is part of Visitor interface
-func (n NoopVisitor) VisitNormalField(i *NormalField) {}
+	// VisitPackage is part of Visitor interface
+	return
+}
 
-// VisitEnumField is part of Visitor interface
-func (n NoopVisitor) VisitEnumField(i *EnumField) {}
+func (n NoopVisitor) VisitPackage(p *Package) {
+	_ = "STUB: not implemented"
 
-// VisitEnum is part of Visitor interface
-func (n NoopVisitor) VisitEnum(e *Enum) {}
+	// VisitOption is part of Visitor interface
+	return
+}
 
-// VisitComment is part of Visitor interface
-func (n NoopVisitor) VisitComment(e *Comment) {}
+func (n NoopVisitor) VisitOption(o *Option) {
+	_ = "STUB: not implemented"
 
-// VisitOneof is part of Visitor interface
-func (n NoopVisitor) VisitOneof(o *Oneof) {}
+	// VisitImport is part of Visitor interface
+	return
+}
 
-// VisitOneofField is part of Visitor interface
-func (n NoopVisitor) VisitOneofField(o *OneOfField) {}
+func (n NoopVisitor) VisitImport(i *Import) {
+	_ = "STUB: not implemented"
 
-// VisitReserved is part of Visitor interface
-func (n NoopVisitor) VisitReserved(r *Reserved) {}
+	// VisitNormalField is part of Visitor interface
+	return
+}
 
-// VisitRPC is part of Visitor interface
-func (n NoopVisitor) VisitRPC(r *RPC) {}
+func (n NoopVisitor) VisitNormalField(i *NormalField) {
+	_ = "STUB: not implemented"
 
-// VisitMapField is part of Visitor interface
-func (n NoopVisitor) VisitMapField(f *MapField) {}
+	// VisitEnumField is part of Visitor interface
+	return
+}
 
-// VisitGroup is part of Visitor interface
-func (n NoopVisitor) VisitGroup(g *Group) {}
+func (n NoopVisitor) VisitEnumField(i *EnumField) {
+	_ = "STUB: not implemented"
 
-// VisitExtensions is part of Visitor interface
-func (n NoopVisitor) VisitExtensions(e *Extensions) {}
+	// VisitEnum is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitEnum(e *Enum) {
+	_ = "STUB: not implemented"
+
+	// VisitComment is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitComment(e *Comment) {
+	_ = "STUB: not implemented"
+
+	// VisitOneof is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitOneof(o *Oneof) {
+	_ = "STUB: not implemented"
+
+	// VisitOneofField is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitOneofField(o *OneOfField) {
+	_ = "STUB: not implemented"
+
+	// VisitReserved is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitReserved(r *Reserved) {
+	_ = "STUB: not implemented"
+
+	// VisitRPC is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitRPC(r *RPC) {
+	_ = "STUB: not implemented"
+
+	// VisitMapField is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitMapField(f *MapField) {
+	_ = "STUB: not implemented"
+
+	// VisitGroup is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitGroup(g *Group) {
+	_ = "STUB: not implemented"
+
+	// VisitExtensions is part of Visitor interface
+	return
+}
+
+func (n NoopVisitor) VisitExtensions(e *Extensions) { _ = "STUB: not implemented"; return }

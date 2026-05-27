@@ -23,69 +23,45 @@
 
 package proto
 
-func getParent(child Visitee) Visitee {
-	if child == nil {
-		return nil
-	}
-	pa := new(parentAccessor)
-	child.Accept(pa)
-	return pa.parent
-}
+func getParent(child Visitee) Visitee { _ = "STUB: not implemented"; return *new(Visitee) }
 
 type parentAccessor struct {
 	parent Visitee
 }
 
-func (p *parentAccessor) VisitMessage(m *Message) {
-	p.parent = m.Parent
-}
-func (p *parentAccessor) VisitService(v *Service) {
-	p.parent = v.Parent
-}
-func (p *parentAccessor) VisitSyntax(s *Syntax) {
-	p.parent = s.Parent
-}
-func (p *parentAccessor) VisitPackage(pkg *Package) {
-	p.parent = pkg.Parent
-}
-func (p *parentAccessor) VisitOption(o *Option) {
-	p.parent = o.Parent
-}
-func (p *parentAccessor) VisitImport(i *Import) {
-	p.parent = i.Parent
-}
-func (p *parentAccessor) VisitNormalField(i *NormalField) {
-	p.parent = i.Parent
-}
-func (p *parentAccessor) VisitEnumField(i *EnumField) {
-	p.parent = i.Parent
-}
-func (p *parentAccessor) VisitEnum(e *Enum) {
-	p.parent = e.Parent
-}
-func (p *parentAccessor) VisitComment(e *Comment) {}
-func (p *parentAccessor) VisitOneof(o *Oneof) {
-	p.parent = o.Parent
-}
-func (p *parentAccessor) VisitOneofField(o *OneOfField) {
-	p.parent = o.Parent
-}
-func (p *parentAccessor) VisitReserved(rs *Reserved) {
-	p.parent = rs.Parent
-}
-func (p *parentAccessor) VisitRPC(rpc *RPC) {
-	p.parent = rpc.Parent
-}
-func (p *parentAccessor) VisitMapField(f *MapField) {
-	p.parent = f.Parent
-}
-func (p *parentAccessor) VisitGroup(g *Group) {
-	p.parent = g.Parent
-}
-func (p *parentAccessor) VisitExtensions(e *Extensions) {
-	p.parent = e.Parent
-}
-func (p *parentAccessor) VisitEdition(e *Edition) {
-	p.parent = e.Parent
-}
-func (p *parentAccessor) VisitProto(*Proto) {}
+func (p *parentAccessor) VisitMessage(m *Message) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitService(v *Service) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitSyntax(s *Syntax) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitPackage(pkg *Package) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitOption(o *Option) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitImport(i *Import) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitNormalField(i *NormalField) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitEnumField(i *EnumField) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitEnum(e *Enum) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitComment(e *Comment) { _ = "STUB: not implemented"; return }
+func (p *parentAccessor) VisitOneof(o *Oneof)     { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitOneofField(o *OneOfField) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitReserved(rs *Reserved) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitRPC(rpc *RPC) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitMapField(f *MapField) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitGroup(g *Group) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitExtensions(e *Extensions) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitEdition(e *Edition) { _ = "STUB: not implemented"; return }
+
+func (p *parentAccessor) VisitProto(*Proto) { _ = "STUB: not implemented"; return }

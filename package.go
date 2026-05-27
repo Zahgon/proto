@@ -35,29 +35,18 @@ type Package struct {
 }
 
 // Doc is part of Documented
-func (p *Package) Doc() *Comment {
-	return p.Comment
-}
+func (p *Package) Doc() *Comment { _ = "STUB: not implemented"; return nil }
 
-func (p *Package) parse(pr *Parser) error {
-	_, tok, lit := pr.nextIdent(true)
-	if tIDENT != tok {
-		if !isKeyword(tok) {
-			return pr.unexpected(lit, "package identifier", p)
-		}
-	}
-	p.Name = lit
-	return nil
-}
+func (p *Package) parse(pr *Parser) error { _ = "STUB: not implemented"; return nil }
 
 // Accept dispatches the call to the visitor.
 func (p *Package) Accept(v Visitor) {
-	v.VisitPackage(p)
+	_ = "STUB: not implemented"
+
+	// inlineComment is part of commentInliner.
+	return
 }
 
-// inlineComment is part of commentInliner.
-func (p *Package) inlineComment(c *Comment) {
-	p.InlineComment = c
-}
+func (p *Package) inlineComment(c *Comment) { _ = "STUB: not implemented"; return }
 
-func (p *Package) parent(v Visitee) { p.Parent = v }
+func (p *Package) parent(v Visitee) { _ = "STUB: not implemented"; return }

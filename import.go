@@ -37,36 +37,19 @@ type Import struct {
 	Parent        Visitee
 }
 
-func (i *Import) parse(p *Parser) error {
-	_, tok, lit := p.next()
-	switch tok {
-	case tWEAK:
-		i.Kind = lit
-		return i.parse(p)
-	case tPUBLIC:
-		i.Kind = lit
-		return i.parse(p)
-	case tIDENT:
-		i.Filename, _ = unQuote(lit)
-	default:
-		return p.unexpected(lit, "import classifier weak|public|quoted", i)
-	}
-	return nil
-}
+func (i *Import) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
 
 // Accept dispatches the call to the visitor.
 func (i *Import) Accept(v Visitor) {
-	v.VisitImport(i)
+	_ = "STUB: not implemented"
+
+	// inlineComment is part of commentInliner.
+	return
 }
 
-// inlineComment is part of commentInliner.
-func (i *Import) inlineComment(c *Comment) {
-	i.InlineComment = c
-}
+func (i *Import) inlineComment(c *Comment) { _ = "STUB: not implemented"; return }
 
 // Doc is part of Documented
-func (i *Import) Doc() *Comment {
-	return i.Comment
-}
+func (i *Import) Doc() *Comment { _ = "STUB: not implemented"; return nil }
 
-func (i *Import) parent(v Visitee) { i.Parent = v }
+func (i *Import) parent(v Visitee) { _ = "STUB: not implemented"; return }

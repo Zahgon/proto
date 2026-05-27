@@ -31,132 +31,43 @@ type Proto struct {
 
 // Accept dispatches the call to the visitor.
 func (proto *Proto) Accept(v Visitor) {
+	_ = "STUB: not implemented"
 	// As Proto is not (yet) a Visitee, we enumerate its elements instead
-	//v.VisitProto(proto)
-	for _, each := range proto.Elements {
-		each.Accept(v)
-	}
+	// v.VisitProto(proto)
+	return
 }
 
 // addElement is part of elementContainer
-func (proto *Proto) addElement(v Visitee) {
-	v.parent(proto)
-	proto.Elements = append(proto.Elements, v)
-}
+func (proto *Proto) addElement(v Visitee) { _ = "STUB: not implemented"; return }
 
 // elements is part of elementContainer
-func (proto *Proto) elements() []Visitee {
-	return proto.Elements
-}
+func (proto *Proto) elements() []Visitee { _ = "STUB: not implemented"; return nil }
 
 // takeLastComment is part of elementContainer
 // removes and returns the last element of the list if it is a Comment.
 func (proto *Proto) takeLastComment(expectedOnLine int) (last *Comment) {
-	last, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, expectedOnLine)
-	return
-}
-
-// parse parsers a complete .proto definition source.
-func (proto *Proto) parse(p *Parser) error {
-	for {
-		pos, tok, lit := p.next()
-		switch {
-		case isComment(lit):
-			if com := mergeOrReturnComment(proto.Elements, lit, pos); com != nil { // not merged?
-				proto.Elements = append(proto.Elements, com)
-			}
-		case tOPTION == tok:
-			o := new(Option)
-			o.Position = pos
-			o.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := o.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(o)
-		case tSYNTAX == tok:
-			s := new(Syntax)
-			s.Position = pos
-			s.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := s.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(s)
-		case tEDITION == tok:
-			s := new(Edition)
-			s.Position = pos
-			s.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := s.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(s)
-		case tIMPORT == tok:
-			im := new(Import)
-			im.Position = pos
-			im.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := im.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(im)
-		case tENUM == tok:
-			enum := new(Enum)
-			enum.Position = pos
-			enum.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := enum.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(enum)
-		case tSERVICE == tok:
-			service := new(Service)
-			service.Position = pos
-			service.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			err := service.parse(p)
-			if err != nil {
-				return err
-			}
-			proto.addElement(service)
-		case tPACKAGE == tok:
-			pkg := new(Package)
-			pkg.Position = pos
-			pkg.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := pkg.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(pkg)
-		case tMESSAGE == tok:
-			msg := new(Message)
-			msg.Position = pos
-			msg.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			if err := msg.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(msg)
-		// BEGIN proto2
-		case tEXTEND == tok:
-			msg := new(Message)
-			msg.Position = pos
-			msg.Comment, proto.Elements = takeLastCommentIfEndsOnLine(proto.Elements, pos.Line-1)
-			msg.IsExtend = true
-			if err := msg.parse(p); err != nil {
-				return err
-			}
-			proto.addElement(msg)
-		// END proto2
-		case tSEMICOLON == tok:
-			maybeScanInlineComment(p, proto)
-			// continue
-		case tEOF == tok:
-			goto done
-		default:
-			return p.unexpected(lit, ".proto element {comment|option|import|syntax|enum|service|package|message}", p)
-		}
-	}
-done:
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func (proto *Proto) parent(v Visitee) {}
+// parse parsers a complete .proto definition source.
+func (proto *Proto) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
 
-// elementContainer unifies types that have elements.
+// not merged?
+
+// BEGIN proto2
+
+// END proto2
+
+// continue
+
+func (proto *Proto) parent(v Visitee) {
+	_ = "STUB: not implemented"
+
+	// elementContainer unifies types that have elements.
+	return
+}
+
 type elementContainer interface {
 	addElement(v Visitee)
 	elements() []Visitee

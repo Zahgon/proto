@@ -23,11 +23,6 @@
 
 package proto
 
-import (
-	"fmt"
-	"strconv"
-)
-
 // Range is to specify number intervals (with special end value "max")
 type Range struct {
 	From, To int
@@ -35,63 +30,18 @@ type Range struct {
 }
 
 // SourceRepresentation return a single number if from = to. Returns <from> to <to> otherwise unless Max then return <from> to max.
-func (r Range) SourceRepresentation() string {
-	if r.Max {
-		return fmt.Sprintf("%d to max", r.From)
-	}
-	if r.From == r.To {
-		return strconv.Itoa(r.From)
-	}
-	return fmt.Sprintf("%d to %d", r.From, r.To)
-}
+func (r Range) SourceRepresentation() string { _ = "STUB: not implemented"; return "" }
 
 // parseRanges is used to parse ranges for extensions and reserved
 func parseRanges(p *Parser, n Visitee) (list []Range, err error) {
-	seenTo := false
-	negate := false // for numbers
-	for {
-		pos, tok, lit := p.next()
-		if isString(lit) {
-			return list, p.unexpected(lit, "integer, <to> <max>", n)
-		}
-		switch lit {
-		case "-":
-			negate = true
-		case ",":
-		case "to":
-			seenTo = true
-		case ";", "[":
-			p.nextPut(pos, tok, lit) // allow for inline comment parsing or options
-			goto done
-		case "max":
-			if !seenTo {
-				return list, p.unexpected(lit, "to", n)
-			}
-			from := list[len(list)-1]
-			list = append(list[0:len(list)-1], Range{From: from.From, Max: true})
-		default:
-			// must be number
-			i, err := strconv.Atoi(lit)
-			if err != nil {
-				return list, p.unexpected(lit, "range integer", n)
-			}
-			if negate {
-				i = -i
-				negate = false
-			}
-			if seenTo {
-				// replace last two ranges with one
-				if len(list) < 1 {
-					p.unexpected(lit, "integer", n)
-				}
-				from := list[len(list)-1]
-				list = append(list[0:len(list)-1], Range{From: from.From, To: i})
-				seenTo = false
-			} else {
-				list = append(list, Range{From: i, To: i})
-			}
-		}
-	}
-done:
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
+
+	// for numbers
 }
+
+// allow for inline comment parsing or options
+
+// must be number
+
+// replace last two ranges with one

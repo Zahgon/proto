@@ -36,44 +36,15 @@ type Reserved struct {
 }
 
 // inlineComment is part of commentInliner.
-func (r *Reserved) inlineComment(c *Comment) {
-	r.InlineComment = c
-}
+func (r *Reserved) inlineComment(c *Comment) { _ = "STUB: not implemented"; return }
 
 // Accept dispatches the call to the visitor.
-func (r *Reserved) Accept(v Visitor) {
-	v.VisitReserved(r)
-}
+func (r *Reserved) Accept(v Visitor) { _ = "STUB: not implemented"; return }
 
-func (r *Reserved) parse(p *Parser) error {
-	for {
-		pos, tok, lit := p.next()
-		if len(lit) == 0 {
-			return p.unexpected(lit, "reserved string or integer", r)
-		}
-		// first char that determined tok
-		ch := []rune(lit)[0]
-		if isDigit(ch) || ch == '-' {
-			// use unread here because it could be start of ranges
-			p.nextPut(pos, tok, lit)
-			list, err := parseRanges(p, r)
-			if err != nil {
-				return err
-			}
-			r.Ranges = list
-			continue
-		}
-		if isString(lit) {
-			s, _ := unQuote(lit)
-			r.FieldNames = append(r.FieldNames, s)
-			continue
-		}
-		if tSEMICOLON == tok {
-			p.nextPut(pos, tok, lit)
-			break
-		}
-	}
-	return nil
-}
+func (r *Reserved) parse(p *Parser) error { _ = "STUB: not implemented"; return nil }
 
-func (r *Reserved) parent(v Visitee) { r.Parent = v }
+// first char that determined tok
+
+// use unread here because it could be start of ranges
+
+func (r *Reserved) parent(v Visitee) { _ = "STUB: not implemented"; return }
